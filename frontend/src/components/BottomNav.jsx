@@ -27,7 +27,7 @@ function BottomNav() {
         Carrito
       </Link>
 
-      <Link to="/login" className={isActive("/login") ? "active" : ""}>
+      <Link to="/perfil" className={isActive("/perfil") ? "active" : ""}>
         <span>♙</span>
         Perfil
       </Link>

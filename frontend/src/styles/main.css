@@ -1489,3 +1489,28 @@ body {
   display: block;
   background-color: #121212;
 }
+
+.profile-data {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid rgba(0, 243, 255, 0.45);
+  border-radius: 12px;
+  background: rgba(0, 243, 255, 0.06);
+}
+
+.profile-data strong {
+  color: #00f3ff;
+  font-size: 1.1rem;
+}
+
+.profile-data span {
+  color: #d8e6eb;
+}
+
+.logout-button {
+  background: #ff6600;
+  color: #ffffff;
+}

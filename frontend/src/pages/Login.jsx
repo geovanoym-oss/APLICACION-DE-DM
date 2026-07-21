@@ -1,93 +1,97 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+export default function Login() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
+
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [message, setMessage] = useState("");
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
-    setForm({
-      ...form,
+    setFormData({
+      ...formData,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setError("");
 
-    const users = JSON.parse(localStorage.getItem("novaGamerUsers")) || [];
+    try {
+      setLoading(true);
 
-    const user = users.find(
-      (currentUser) =>
-        currentUser.email === form.email &&
-        currentUser.password === form.password,
-    );
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    if (!user) {
-      setMessage("Correo o contraseña incorrectos.");
-      return;
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Correo o contraseña incorrectos.");
+      }
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
-
-    localStorage.setItem(
-      "novaGamerSession",
-      JSON.stringify({
-        name: user.name,
-        email: user.email,
-      }),
-    );
-
-    navigate("/");
   };
 
   return (
-    <section className="auth-page">
-      <form className="auth-card" onSubmit={handleSubmit}>
-        <p className="eyebrow">BIENVENIDO DE NUEVO</p>
+    <main className="auth-page">
+      <section className="auth-card">
+        <p className="eyebrow">MI TIENDA GAMER</p>
         <h1>Iniciar sesión</h1>
-        <p className="auth-subtitle">
-          Accede a tu cuenta y continúa mejorando tu setup.
-        </p>
+        <p>Accede a tu cuenta gamer.</p>
 
-        <label>
-          Correo electrónico
+        {error && <p className="form-error">{error}</p>}
+
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Correo electrónico</label>
           <input
-            type="email"
+            id="email"
             name="email"
-            placeholder="correo@ejemplo.com"
-            value={form.email}
+            type="email"
+            placeholder="correo@email.com"
+            value={formData.email}
             onChange={handleChange}
             required
           />
-        </label>
 
-        <label>
-          Contraseña
+          <label htmlFor="password">Contraseña</label>
           <input
-            type="password"
+            id="password"
             name="password"
+            type="password"
             placeholder="Tu contraseña"
-            value={form.password}
+            value={formData.password}
             onChange={handleChange}
             required
           />
-        </label>
 
-        {message && <p className="form-message error">{message}</p>}
-
-        <button type="submit" className="btn btn-primary auth-button">
-          Entrar a mi cuenta
-        </button>
+          <button type="submit" className="primary-button" disabled={loading}>
+            {loading ? "Entrando..." : "Iniciar sesión"}
+          </button>
+        </form>
 
         <p className="auth-switch">
           ¿No tienes cuenta? <Link to="/registro">Regístrate</Link>
         </p>
-      </form>
-    </section>
+      </section>
+    </main>
   );
 }
-
-export default Login;

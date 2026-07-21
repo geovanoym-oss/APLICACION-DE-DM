@@ -1,106 +1,132 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function Register() {
+export default function Register() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
+
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
-  const [message, setMessage] = useState("");
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
-    setForm({
-      ...form,
+    setFormData({
+      ...formData,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setError("");
 
-    if (form.password.length < 6) {
-      setMessage("La contraseña debe tener al menos 6 caracteres.");
+    if (formData.password !== formData.confirmPassword) {
+      setError("Las contraseñas no coinciden.");
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem("novaGamerUsers")) || [];
-    const exists = users.some((user) => user.email === form.email);
+    try {
+      setLoading(true);
 
-    if (exists) {
-      setMessage("Ya existe una cuenta con este correo.");
-      return;
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "No se pudo crear la cuenta.");
+      }
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
-
-    // Temporal: después se reemplazará por una petición al backend.
-    users.push(form);
-    localStorage.setItem("novaGamerUsers", JSON.stringify(users));
-    localStorage.setItem(
-      "novaGamerSession",
-      JSON.stringify({ name: form.name, email: form.email }),
-    );
-
-    navigate("/");
   };
 
   return (
-    <section className="auth-page">
-      <form className="auth-card" onSubmit={handleSubmit}>
-        <p className="eyebrow">ÚNETE AL EQUIPO</p>
+    <main className="auth-page">
+      <section className="auth-card">
+        <p className="eyebrow">MI TIENDA GAMER</p>
         <h1>Crear cuenta</h1>
-        <p className="auth-subtitle">
-          Regístrate para guardar tus productos favoritos.
-        </p>
+        <p>Regístrate para guardar tu información.</p>
 
-        <label>
-          Nombre completo
+        {error && <p className="form-error">{error}</p>}
+
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">Nombre</label>
           <input
-            type="text"
+            id="name"
             name="name"
+            type="text"
             placeholder="Tu nombre"
-            value={form.name}
+            value={formData.name}
             onChange={handleChange}
             required
           />
-        </label>
 
-        <label>
-          Correo electrónico
+          <label htmlFor="email">Correo electrónico</label>
           <input
-            type="email"
+            id="email"
             name="email"
-            placeholder="correo@ejemplo.com"
-            value={form.email}
+            type="email"
+            placeholder="correo@email.com"
+            value={formData.email}
             onChange={handleChange}
             required
           />
-        </label>
 
-        <label>
-          Contraseña
+          <label htmlFor="password">Contraseña</label>
           <input
-            type="password"
+            id="password"
             name="password"
+            type="password"
             placeholder="Mínimo 6 caracteres"
-            value={form.password}
+            value={formData.password}
             onChange={handleChange}
+            minLength="6"
             required
           />
-        </label>
 
-        {message && <p className="form-message error">{message}</p>}
+          <label htmlFor="confirmPassword">Confirmar contraseña</label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            placeholder="Repite tu contraseña"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            minLength="6"
+            required
+          />
 
-        <button type="submit" className="btn btn-primary auth-button">
-          Crear mi cuenta
-        </button>
+          <button type="submit" className="primary-button" disabled={loading}>
+            {loading ? "Creando cuenta..." : "Crear cuenta"}
+          </button>
+        </form>
 
         <p className="auth-switch">
           ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
         </p>
-      </form>
-    </section>
+      </section>
+    </main>
   );
 }
-
-export default Register;

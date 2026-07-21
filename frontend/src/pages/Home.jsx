@@ -28,12 +28,42 @@ const slides = [
 ];
 
 const categories = [
-  { name: "Sillas", icon: "🪑", filter: "sillas" },
-  { name: "Monitores", icon: "🖥️", filter: "monitores" },
-  { name: "PCs", icon: "🖥️", filter: "pcs-armadas" },
-  { name: "Componentes", icon: "⚙️", filter: "componentes" },
-  { name: "Teclados", icon: "⌨️", filter: "teclados" },
-  { name: "Mouse", icon: "🖱️", filter: "mouse" },
+  {
+    name: "Sillas",
+    image:
+      "https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=400&q=85",
+    filter: "sillas",
+  },
+  {
+    name: "Monitores",
+    image:
+      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=400&q=85",
+    filter: "monitores",
+  },
+  {
+    name: "PCs",
+    image:
+      "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=85",
+    filter: "pcs-armadas",
+  },
+  {
+    name: "Componentes",
+    image:
+      "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=400&q=85",
+    filter: "componentes",
+  },
+  {
+    name: "Teclados",
+    image:
+      "https://images.unsplash.com/photo-1541140532154-b024d705b90a?auto=format&fit=crop&w=400&q=85",
+    filter: "teclados",
+  },
+  {
+    name: "Mouse",
+    image:
+      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=400&q=85",
+    filter: "mouse",
+  },
 ];
 
 const featuredProducts = [
@@ -125,7 +155,7 @@ function Home() {
               className="mobile-category-card"
               key={category.filter}
             >
-              <span>{category.icon}</span>
+              <img src={category.image} alt={category.name} />
               <p>{category.name}</p>
             </Link>
           ))}

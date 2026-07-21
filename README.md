@@ -1,4 +1,4 @@
-# Mi tienda Gamer - Nova Gamer
+# Mi Tienda Gamer - Nova Gamer
 
 ## Resumen del proyecto
 

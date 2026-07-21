@@ -1,16 +1,69 @@
-const images = {
-  sillas:
-    "https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=700&q=85",
-  monitores:
-    "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=85",
-  "pcs-armadas":
-    "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=85",
-  componentes:
-    "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=700&q=85",
-  teclados:
-    "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=85",
-  mouse:
-    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=700&q=85",
+const productImages = {
+  1: "https://secretlab.co/products/titan-evo-2022-series",
+  2: "https://placehold.co/700x500/121212/00f3ff?text=Corsair+T3+RUSH",
+  3: "https://placehold.co/700x500/121212/00f3ff?text=Razer+Iskur+X",
+  4: "https://placehold.co/700x500/121212/00f3ff?text=Cougar+Armor+EVO+RGB",
+  5: "https://placehold.co/700x500/121212/00f3ff?text=Logitech+G+Embody",
+  6: "https://placehold.co/700x500/121212/00f3ff?text=DXRacer+Formula+F08",
+  7: "https://placehold.co/700x500/121212/00f3ff?text=Cooler+Master+Caliber+R2",
+  8: "https://placehold.co/700x500/121212/00f3ff?text=Noblechairs+HERO",
+  9: "https://placehold.co/700x500/121212/00f3ff?text=MSI+MAG+CH120+X",
+  10: "https://placehold.co/700x500/121212/00f3ff?text=ASUS+ROG+Chariot",
+
+  11: "https://placehold.co/700x500/121212/00f3ff?text=ASUS+ROG+Swift+OLED",
+  12: "https://placehold.co/700x500/121212/00f3ff?text=Samsung+Odyssey+G7",
+  13: "https://placehold.co/700x500/121212/00f3ff?text=LG+UltraGear",
+  14: "https://placehold.co/700x500/121212/00f3ff?text=BenQ+ZOWIE+XL2546K",
+  15: "https://placehold.co/700x500/121212/00f3ff?text=MSI+Optix+MAG274QRF",
+  16: "https://placehold.co/700x500/121212/00f3ff?text=Gigabyte+M28U",
+  17: "https://placehold.co/700x500/121212/00f3ff?text=Acer+Predator+XB273U",
+  18: "https://placehold.co/700x500/121212/00f3ff?text=Alienware+AW2521H",
+  19: "https://placehold.co/700x500/121212/00f3ff?text=AOC+C24G2",
+  20: "https://placehold.co/700x500/121212/00f3ff?text=ViewSonic+ELITE",
+
+  21: "https://placehold.co/700x500/121212/ff6600?text=Corsair+Vengeance+i7400",
+  22: "https://placehold.co/700x500/121212/ff6600?text=MSI+Aegis+RS+13th",
+  23: "https://placehold.co/700x500/121212/ff6600?text=ASUS+ROG+Strix+G16CH",
+  24: "https://placehold.co/700x500/121212/ff6600?text=Alienware+Aurora+R15",
+  25: "https://placehold.co/700x500/121212/ff6600?text=HP+OMEN+45L",
+  26: "https://placehold.co/700x500/121212/ff6600?text=Lenovo+Legion+Tower+7i",
+  27: "https://placehold.co/700x500/121212/ff6600?text=NZXT+Player+Three+Prime",
+  28: "https://placehold.co/700x500/121212/ff6600?text=CyberPowerPC+Gamer+Xtreme",
+  29: "https://placehold.co/700x500/121212/ff6600?text=iBUYPOWER+Y60+Ultra",
+  30: "https://placehold.co/700x500/121212/ff6600?text=Thermaltake+Reactor+380",
+
+  31: "https://placehold.co/700x500/121212/00f3ff?text=Intel+Core+i9-14900K",
+  32: "https://placehold.co/700x500/121212/00f3ff?text=AMD+Ryzen+7+7800X3D",
+  33: "https://placehold.co/700x500/121212/00f3ff?text=NVIDIA+RTX+4090+FE",
+  34: "https://placehold.co/700x500/121212/00f3ff?text=ASUS+ROG+RTX+4070+Ti",
+  35: "https://placehold.co/700x500/121212/00f3ff?text=Corsair+Dominator+RGB",
+  36: "https://placehold.co/700x500/121212/00f3ff?text=Samsung+990+PRO",
+  37: "https://placehold.co/700x500/121212/00f3ff?text=MSI+MAG+Z790",
+  38: "https://placehold.co/700x500/121212/00f3ff?text=Lian+Li+O11+Dynamic",
+  39: "https://placehold.co/700x500/121212/00f3ff?text=NZXT+Kraken+Elite+360",
+  40: "https://placehold.co/700x500/121212/00f3ff?text=Seasonic+PRIME+TX-1000",
+
+  41: "https://placehold.co/700x500/121212/00f3ff?text=Razer+Huntsman+V3+Pro",
+  42: "https://placehold.co/700x500/121212/00f3ff?text=Logitech+G+PRO+X+TKL",
+  43: "https://placehold.co/700x500/121212/00f3ff?text=Corsair+K70+RGB+PRO",
+  44: "https://placehold.co/700x500/121212/00f3ff?text=SteelSeries+Apex+Pro",
+  45: "https://placehold.co/700x500/121212/00f3ff?text=ASUS+ROG+Strix+Scope",
+  46: "https://placehold.co/700x500/121212/00f3ff?text=HyperX+Alloy+Origins",
+  47: "https://placehold.co/700x500/121212/00f3ff?text=Keychron+K8+Pro",
+  48: "https://placehold.co/700x500/121212/00f3ff?text=Razer+BlackWidow+V4",
+  49: "https://placehold.co/700x500/121212/00f3ff?text=Logitech+G915+TKL",
+  50: "https://placehold.co/700x500/121212/00f3ff?text=Corsair+K65+RGB+MINI",
+
+  51: "https://placehold.co/700x500/121212/ff6600?text=Logitech+G+PRO+X+Superlight",
+  52: "https://placehold.co/700x500/121212/ff6600?text=Razer+Viper+V3+Pro",
+  53: "https://placehold.co/700x500/121212/ff6600?text=SteelSeries+Aerox+5",
+  54: "https://placehold.co/700x500/121212/ff6600?text=Corsair+M75+Air",
+  55: "https://placehold.co/700x500/121212/ff6600?text=ASUS+ROG+Harpe+Ace",
+  56: "https://placehold.co/700x500/121212/ff6600?text=HyperX+Pulsefire+Haste",
+  57: "https://placehold.co/700x500/121212/ff6600?text=Razer+Basilisk+V3+Pro",
+  58: "https://placehold.co/700x500/121212/ff6600?text=Logitech+G502+X+Plus",
+  59: "https://placehold.co/700x500/121212/ff6600?text=Glorious+Model+O+2",
+  60: "https://placehold.co/700x500/121212/ff6600?text=Cooler+Master+MM712",
 };
 
 const rawProducts = [
@@ -156,7 +209,7 @@ const products = rawProducts.map(([id, name, brand, category, price]) => ({
   brand,
   category,
   price,
-  image: images[category],
+  image: productImages[id],
   description: `${name}, producto gamer de alto rendimiento de ${brand}.`,
   specifications: pcSpecifications[id] || {},
 }));

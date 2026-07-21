@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import ProductDetail from "./pages/ProductDetail";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile.jsx";
 
 function App() {
   return (

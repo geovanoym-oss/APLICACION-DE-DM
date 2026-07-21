@@ -7,21 +7,21 @@ const slides = [
   {
     image:
       "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=85",
-    eyebrow: "NEW ARRIVALS",
-    title: "ULTIMATE GAMING SETUP",
+    eyebrow: "RECIÉN LLEGADO",
+    title: "EL SETUP GAMER DEFINITIVO",
     link: "/catalogo?category=pcs-armadas",
   },
   {
     image:
       "https://images.unsplash.com/photo-1541140532154-b024d705b90a?auto=format&fit=crop&w=1200&q=85",
-    eyebrow: "PLAY WITHOUT LIMITS",
+    eyebrow: "JUEGA SIN LÍMITES",
     title: "TECLADOS Y MOUSE GAMER",
     link: "/catalogo?category=teclados",
   },
   {
     image:
       "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=1200&q=85",
-    eyebrow: "UPGRADE YOUR RIG",
+    eyebrow: "MEJORA TU SETUP",
     title: "COMPONENTES DE ALTO NIVEL",
     link: "/catalogo?category=componentes",
   },

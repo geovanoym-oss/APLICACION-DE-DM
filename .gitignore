@@ -1,0 +1,15 @@
+# Dependencias instaladas
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Variables privadas
+.env
+backend/.env
+
+# Archivos generados por Vite
+frontend/dist/
+build/
+
+# Sistema operativo
+.DS_Store

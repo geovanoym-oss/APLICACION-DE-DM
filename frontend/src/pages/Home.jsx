@@ -31,13 +31,13 @@ const categories = [
   {
     name: "Sillas",
     image:
-      "https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=400&q=85",
+      "https://dlcdnwebimgs.asus.com/gain/0BA0EF94-9712-4136-9E93-4D3F3C02048A/w717/h525/fwebp",
     filter: "sillas",
   },
   {
     name: "Monitores",
     image:
-      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=400&q=85",
+      "https://dlcdnwebimgs.asus.com/gain/59F76A27-DF1B-4EB6-A47A-9604D403C261/w717/h525/fwebp",
     filter: "monitores",
   },
   {
@@ -54,14 +54,13 @@ const categories = [
   },
   {
     name: "Teclados",
-    image:
-      "https://images.unsplash.com/photo-1541140532154-b024d705b90a?auto=format&fit=crop&w=400&q=85",
+    image: "https://m.media-amazon.com/images/I/71aDZGDOwlL.jpg",
     filter: "teclados",
   },
   {
     name: "Mouse",
     image:
-      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=400&q=85",
+      "https://dlcdnwebimgs.asus.com/files/media/D197E030-6783-4D51-8B6D-E10F07FA8D30/v1/img/products/mouse_hover.png",
     filter: "mouse",
   },
 ];

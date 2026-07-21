@@ -1,83 +1,90 @@
 import { Link } from "react-router-dom";
+import ProductCard from "../components/ProductCard";
+import products from "../data/products";
 
 const categories = [
-  {
-    title: "Sillas Gamer",
-    description: "Comodidad y ergonomía para dominar cada partida.",
-    emoji: "🪑",
-    className: "cyan",
-  },
-  {
-    title: "Monitores",
-    description: "Alta frecuencia, respuesta ultrarrápida e imagen inmersiva.",
-    emoji: "🖥️",
-    className: "orange",
-  },
-  {
-    title: "PCs Armadas",
-    description: "Potencia lista para jugar, crear y transmitir.",
-    emoji: "⚡",
-    className: "cyan",
-  },
-  {
-    title: "Componentes",
-    description: "Actualiza tu setup con hardware de alto rendimiento.",
-    emoji: "🔧",
-    className: "orange",
-  },
+  { name: "Sillas", icon: "🪑", filter: "sillas" },
+  { name: "Monitores", icon: "🖥️", filter: "monitores" },
+  { name: "PCs", icon: "🖥️", filter: "pcs-armadas" },
+  { name: "Componentes", icon: "⚙️", filter: "componentes" },
+];
+
+const featuredProducts = [
+  products[0],
+  products[11],
+  products[20],
+  products[32],
 ];
 
 function Home() {
   return (
-    <>
-      <section id="inicio" className="hero">
-        <div className="hero-content">
-          <p className="eyebrow">LEVEL UP YOUR SETUP</p>
+    <div className="mobile-home">
+      <section className="mobile-hero">
+        <img
+          src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=85"
+          alt="Setup gamer"
+        />
 
+        <div className="hero-overlay">
+          <p>NEW ARRIVALS</p>
           <h1>
-            EL PODER DE JUGAR
-            <span> SIN LÍMITES</span>
+            ULTIMATE
+            <br />
+            GAMING
+            <br />
+            SETUP
           </h1>
 
-          <p className="hero-text">
-            Descubre tecnología gamer, componentes de alto rendimiento y los
-            mejores accesorios para construir tu setup definitivo.
-          </p>
-
-          <Link to="/catalogo" className="btn btn-primary">
-            Explorar catálogo
-          </Link>
-        </div>
-
-        <div className="hero-decoration">
-          <div className="neon-orb orb-cyan" />
-          <div className="neon-orb orb-orange" />
-          <span>GAME</span>
+          <Link to="/catalogo">Explorar ahora →</Link>
         </div>
       </section>
 
-      <section id="categorias" className="categories-section">
-        <div className="section-heading">
-          <p className="eyebrow">EQUIPA TU SETUP</p>
-          <h2>Categorías principales</h2>
+      <div className="slider-dots">
+        <span className="active" />
+        <span />
+        <span />
+        <span />
+      </div>
+
+      <section className="mobile-section">
+        <div className="section-title-row">
+          <h2>Categorías</h2>
+          <Link to="/catalogo">Ver todo</Link>
         </div>
 
-        <div className="category-grid">
+        <div className="category-scroll">
           {categories.map((category) => (
             <Link
-              key={category.title}
               to="/catalogo"
-              className={`category-card ${category.className}`}
+              className="mobile-category-card"
+              key={category.name}
             >
-              <span className="category-icon">{category.emoji}</span>
-              <h3>{category.title}</h3>
-              <p>{category.description}</p>
-              <span className="category-link">Ver productos →</span>
+              <span>{category.icon}</span>
+              <p>{category.name}</p>
             </Link>
           ))}
         </div>
       </section>
-    </>
+
+      <section className="mobile-section featured-section">
+        <div className="section-title-row">
+          <h2>Productos destacados</h2>
+          <Link to="/catalogo">Ver todo</Link>
+        </div>
+
+        <div className="featured-scroll">
+          {featuredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mobile-promo">
+        <p>POWER UP</p>
+        <h2>COMPONENTES PARA TU PRÓXIMO NIVEL</h2>
+        <Link to="/catalogo">Comprar ahora</Link>
+      </section>
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import BottomNav from "./components/BottomNav";
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
 import Login from "./pages/Login";
@@ -14,7 +14,7 @@ function App() {
       <div className="app">
         <Navbar />
 
-        <main>
+        <main className="app-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/catalogo" element={<Catalog />} />
@@ -25,7 +25,7 @@ function App() {
           </Routes>
         </main>
 
-        <Footer />
+        <BottomNav />
       </div>
     </CartProvider>
   );

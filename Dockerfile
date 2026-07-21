@@ -1,23 +1,25 @@
-# Construye el frontend React
-FROM node:20-alpine AS build
+FROM node:20-alpine AS frontend-build
 
-WORKDIR /app
+WORKDIR /app/frontend
 
 COPY frontend/package*.json ./
 RUN npm install
 
-COPY frontend ./
+COPY frontend/ ./
 RUN npm run build
 
-# Sirve la versión compilada
+
 FROM node:20-alpine
 
-WORKDIR /app
+WORKDIR /app/backend
 
-RUN npm install -g serve
+COPY backend/package*.json ./
+RUN npm install --omit=dev
 
-COPY --from=build /app/dist ./dist
+COPY backend/ ./
 
-EXPOSE 8080
+COPY --from=frontend-build /app/frontend/dist /app/frontend/dist
 
-CMD ["sh", "-c", "serve --single --listen ${PORT:-8080} dist"]
+EXPOSE 5000
+
+CMD ["node", "server.js"]

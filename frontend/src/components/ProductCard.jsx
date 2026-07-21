@@ -1,10 +1,29 @@
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function ProductCard({ product }) {
+  const navigate = useNavigate();
   const { addToCart } = useCart();
 
+  const openProduct = () => {
+    navigate(`/producto/${product.id}`);
+  };
+
+  const addProductToCart = (event) => {
+    event.stopPropagation();
+    addToCart(product);
+  };
+
   return (
-    <article className="product-card">
+    <article
+      className="product-card clickable-product"
+      onClick={openProduct}
+      role="button"
+      tabIndex="0"
+      onKeyDown={(event) => {
+        if (event.key === "Enter") openProduct();
+      }}
+    >
       <img src={product.image} alt={product.name} className="product-image" />
 
       <div className="product-content">
@@ -15,7 +34,7 @@ function ProductCard({ product }) {
         <div className="product-bottom">
           <strong>${product.price.toFixed(2)}</strong>
 
-          <button type="button" onClick={() => addToCart(product)}>
+          <button type="button" onClick={addProductToCart}>
             Agregar
           </button>
         </div>

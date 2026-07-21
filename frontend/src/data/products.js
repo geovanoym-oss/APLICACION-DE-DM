@@ -1,5 +1,17 @@
-const image = (name, color = "00f3ff") =>
-  `https://placehold.co/600x400/121212/${color}?text=${encodeURIComponent(name)}`;
+const images = {
+  sillas:
+    "https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=700&q=85",
+  monitores:
+    "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=85",
+  "pcs-armadas":
+    "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=85",
+  componentes:
+    "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=700&q=85",
+  teclados:
+    "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=85",
+  mouse:
+    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=700&q=85",
+};
 
 const rawProducts = [
   [1, "Secretlab TITAN Evo 2022", "Secretlab", "sillas", 549],
@@ -51,7 +63,92 @@ const rawProducts = [
   [38, "Lian Li O11 Dynamic EVO Case", "Lian Li", "componentes", 159.99],
   [39, "NZXT Kraken Elite 360 RGB", "NZXT", "componentes", 279.99],
   [40, "Seasonic PRIME TX-1000", "Seasonic", "componentes", 299.99],
+
+  [41, "Razer Huntsman V3 Pro", "Razer", "teclados", 249.99],
+  [42, "Logitech G PRO X TKL", "Logitech G", "teclados", 199.99],
+  [43, "Corsair K70 RGB PRO", "Corsair", "teclados", 159.99],
+  [44, "SteelSeries Apex Pro TKL", "SteelSeries", "teclados", 189.99],
+  [45, "ASUS ROG Strix Scope II", "ASUS", "teclados", 149.99],
+  [46, "HyperX Alloy Origins", "HyperX", "teclados", 109.99],
+  [47, "Keychron K8 Pro", "Keychron", "teclados", 99.99],
+  [48, "Razer BlackWidow V4", "Razer", "teclados", 169.99],
+  [49, "Logitech G915 TKL", "Logitech G", "teclados", 229.99],
+  [50, "Corsair K65 RGB MINI", "Corsair", "teclados", 119.99],
+
+  [51, "Logitech G PRO X Superlight 2", "Logitech G", "mouse", 159.99],
+  [52, "Razer Viper V3 Pro", "Razer", "mouse", 159.99],
+  [53, "SteelSeries Aerox 5 Wireless", "SteelSeries", "mouse", 139.99],
+  [54, "Corsair M75 Air Wireless", "Corsair", "mouse", 149.99],
+  [55, "ASUS ROG Harpe Ace Aim Lab", "ASUS", "mouse", 139.99],
+  [56, "HyperX Pulsefire Haste 2", "HyperX", "mouse", 59.99],
+  [57, "Razer Basilisk V3 Pro", "Razer", "mouse", 159.99],
+  [58, "Logitech G502 X Plus", "Logitech G", "mouse", 159.99],
+  [59, "Glorious Model O 2 Wireless", "Glorious", "mouse", 99.99],
+  [60, "Cooler Master MM712", "Cooler Master", "mouse", 69.99],
 ];
+
+const pcSpecifications = {
+  21: {
+    Procesador: "Intel Core i9-14900K",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4080",
+    RAM: "32 GB DDR5",
+    Almacenamiento: "2 TB NVMe SSD",
+  },
+  22: {
+    Procesador: "Intel Core i7 13th Gen",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4070",
+    RAM: "32 GB DDR5",
+    Almacenamiento: "1 TB NVMe SSD",
+  },
+  23: {
+    Procesador: "Intel Core i7-13700F",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4060 Ti",
+    RAM: "16 GB DDR5",
+    Almacenamiento: "1 TB NVMe SSD",
+  },
+  24: {
+    Procesador: "Intel Core i9-13900KF",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4090",
+    RAM: "64 GB DDR5",
+    Almacenamiento: "2 TB NVMe SSD",
+  },
+  25: {
+    Procesador: "Intel Core i7-13700K",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4070 Ti",
+    RAM: "32 GB DDR5",
+    Almacenamiento: "1 TB NVMe SSD",
+  },
+  26: {
+    Procesador: "Intel Core i7-13700KF",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4070",
+    RAM: "32 GB DDR5",
+    Almacenamiento: "1 TB NVMe SSD",
+  },
+  27: {
+    Procesador: "AMD Ryzen 9 7950X3D",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4090",
+    RAM: "64 GB DDR5",
+    Almacenamiento: "4 TB NVMe SSD",
+  },
+  28: {
+    Procesador: "Intel Core i5",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4060",
+    RAM: "16 GB DDR4",
+    Almacenamiento: "1 TB NVMe SSD",
+  },
+  29: {
+    Procesador: "Intel Core i9",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4080",
+    RAM: "32 GB DDR5",
+    Almacenamiento: "2 TB NVMe SSD",
+  },
+  30: {
+    Procesador: "AMD Ryzen 7",
+    "Tarjeta gráfica": "NVIDIA GeForce RTX 4070 Ti",
+    RAM: "32 GB DDR5",
+    Almacenamiento: "1 TB NVMe SSD",
+  },
+};
 
 const products = rawProducts.map(([id, name, brand, category, price]) => ({
   id,
@@ -59,8 +156,9 @@ const products = rawProducts.map(([id, name, brand, category, price]) => ({
   brand,
   category,
   price,
-  image: image(name, id % 2 === 0 ? "ff6600" : "00f3ff"),
-  description: `Producto gamer ${category.replace("-", " ")} de alto rendimiento, fabricado por ${brand}.`,
+  image: images[category],
+  description: `${name}, producto gamer de alto rendimiento de ${brand}.`,
+  specifications: pcSpecifications[id] || {},
 }));
 
 export default products;
